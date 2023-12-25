@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import  './Card/Card.tsx';
+import Card from './Card/Card.tsx';
+import {useState} from 'react';
+import CardDeck from './lib/CardDeck.ts';
+import PokerHand from './lib/PokerHand.ts';
 
+interface Foo {
+  suit: string;
+  rank: string;
+}
 function App() {
-  const [count, setCount] = useState(0)
+  const [cards, setCards] = useState<Foo[]>([]);
+  const [answer, setAnswer] = useState<string>('');
+  const dealCards = () => {
+    const newCardDeck = new CardDeck();
+    const rndCards: Foo[] = newCardDeck.getCards(5);
+    setCards(rndCards);
+    const output = new PokerHand(rndCards);
+    setAnswer(output.getOutcome());
+  };
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  if (cards.length) {
+    return (
+      <>
+        <div className="playingCards faceImages">
+          <Card rank={cards[0].rank} suit={cards[0].suit}/>
+          <Card rank={cards[1].rank} suit={cards[1].suit}/>
+          <Card rank={cards[2].rank} suit={cards[2].suit}/>
+          <Card rank={cards[3].rank} suit={cards[3].suit}/>
+          <Card rank={cards[4].rank} suit={cards[4].suit}/>
+        </div>
+        <button onClick={dealCards}>Deal cards</button>
+        <div>
+          {answer}
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <button onClick={dealCards}>Deal cards</button>
+      </>
+    );
+  }
+
 }
 
-export default App
+export default App;
