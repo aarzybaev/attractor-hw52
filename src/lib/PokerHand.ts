@@ -10,8 +10,6 @@ class PokerHand {
   constructor(public cards: Card[] ) {}
 
   getOutcome(){
-
-
     const hasOnePair = () => {
       const obj:Obj = {};
       for (const item of this.cards) {

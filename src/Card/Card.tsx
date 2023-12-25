@@ -16,7 +16,7 @@ const Card: React.FC<Props> = props => {
     '♠': 'spades'
   };
 
-  const rank = props.rank.toString().toUpperCase();
+  const rank = props.rank.toUpperCase();
   const cardClassName = `card rank-${props.rank} ${suit[props.suit]}`;
 
   return (

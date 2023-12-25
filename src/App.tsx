@@ -30,10 +30,8 @@ function App() {
           <Card rank={cards[3].rank} suit={cards[3].suit}/>
           <Card rank={cards[4].rank} suit={cards[4].suit}/>
         </div>
-        <button onClick={dealCards}>Deal cards</button>
-        <div>
-          {answer}
-        </div>
+        <button className="btn-deal" onClick={dealCards}>Deal cards</button>
+        <p>Combination: <b>{answer}</b></p>
       </>
     );
   } else {
