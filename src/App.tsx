@@ -5,19 +5,19 @@ import {useState} from 'react';
 import CardDeck from './lib/CardDeck.ts';
 import PokerHand from './lib/PokerHand.ts';
 
-interface Foo {
+interface CardInterface {
   suit: string;
   rank: string;
 }
 function App() {
-  const [cards, setCards] = useState<Foo[]>([]);
+  const [cards, setCards] = useState<CardInterface[]>([]);
   const [answer, setAnswer] = useState<string>('');
   const dealCards = () => {
-    const newCardDeck = new CardDeck();
-    const rndCards: Foo[] = newCardDeck.getCards(5);
+    const cardDeck = new CardDeck();
+    const rndCards: CardInterface[] = cardDeck.getCards(5);
     setCards(rndCards);
-    const output = new PokerHand(rndCards);
-    setAnswer(output.getOutcome());
+    const pokerHand = new PokerHand(rndCards);
+    setAnswer(pokerHand.getOutcome());
   };
 
   if (cards.length) {
