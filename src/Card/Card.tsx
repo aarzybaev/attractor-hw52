@@ -9,7 +9,7 @@ interface Suit {
   [key: string]: string
 }
 
-const Card: React.FC<Props> = props => {
+const Card: React.FC<Props> = (props) => {
   const suit: Suit = {
     '♦': 'diams',
     '♥': 'hearts',
