@@ -1,9 +1,10 @@
 import Card from './Card.ts';
 
-interface Bar {
+interface CardInterface {
   suit: string;
   rank: string;
 }
+
 class CardDeck {
   public cardDeck: object[];
 
@@ -26,15 +27,15 @@ class CardDeck {
     };
     const randomCardNumber = randomInteger(0, this.cardDeck.length - 1);
     const extractedCard = this.cardDeck.splice(randomCardNumber, 1);
-    return <Bar>extractedCard[0];
+    return <CardInterface>extractedCard[0];
   }
 
-  getCards(howMany: number):Bar[] {
-    const randomCards: Bar[] = [];
+  getCards(howMany: number) {
+    const randomCards: CardInterface[] = [];
     for (let i = 0; i < howMany; i++) {
       randomCards.push(this.getCard());
     }
-    return randomCards;
+    return <CardInterface[]>randomCards;
   }
 }
 

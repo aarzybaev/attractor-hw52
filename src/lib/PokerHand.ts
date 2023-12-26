@@ -6,12 +6,14 @@ interface Card {
 interface Obj {
   [key: string]: number
 }
-class PokerHand {
-  constructor(public cards: Card[] ) {}
 
-  getOutcome(){
+class PokerHand {
+  constructor(public cards: Card[]) {
+  }
+
+  getOutcome() {
     const hasOnePair = () => {
-      const obj:Obj = {};
+      const obj: Obj = {};
       for (const item of this.cards) {
         if (obj[item.rank] === undefined) {
           obj[item.rank] = 1;
@@ -23,7 +25,7 @@ class PokerHand {
     };
 
     const hasTwoPairs = () => {
-      const obj:Obj = {};
+      const obj: Obj = {};
       for (const item of this.cards) {
         if (obj[item.rank] === undefined) {
           obj[item.rank] = 1;
@@ -36,7 +38,7 @@ class PokerHand {
     };
 
     const threeOfKind = () => {
-      const obj:Obj = {};
+      const obj: Obj = {};
       for (const item of this.cards) {
         if (obj[item.rank] === undefined) {
           obj[item.rank] = 1;
@@ -49,7 +51,7 @@ class PokerHand {
     };
 
     const flush = () => {
-      const obj:Obj = {};
+      const obj: Obj = {};
       for (const item of this.cards) {
         if (obj[item.suit] === undefined) {
           obj[item.suit] = 1;
@@ -60,8 +62,6 @@ class PokerHand {
       const size = Object.values(obj).filter((item) => item === 5);
       return size.length !== 0;
     };
-
-    //
 
     if (flush()) {
       return 'Flush';
